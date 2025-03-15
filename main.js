@@ -1,73 +1,90 @@
-//
-// Task 1------------------------------------
-//
-console.log("Task 1--------------------------------")
+//Task 1
 
-const user = [
-    { name: "temo", age: 25 },
-    { name: "Lasha", age: 21 },
-    { name: "Ana", age: 28 },
-]
+console.log("Task 1");
 
-function getYoungerAge(){
-    const getAges = user.map(person => person.age)
-    const youngest = Math.min(...getAges)
-    const youngestPerson = user.find(person => person.age === youngest)
-    console.log(youngestPerson)
+const sum = (...nums) => {
+if (nums.length <= 2) {
+    console.log('Add more numbers')
 }
 
-getYoungerAge ()
+const value1 = nums[0] + nums[1];
 
-//
-// Task 2--------------------------------
-//
-console.log("Task 2--------------------------------")
+  const value2 = nums.slice(2).reduce((res, num ) => res * num, 1)
 
-function cloneUser(original) {
-    return { ...original};
-    
-}
+    return [value1, value2]
 
-const original = {
-    name: 'David',
+};
+
+console.log(sum(5, 10, 20, 5, 4, 3)); // [15, 1200]
+
+//task - 2
+console.log("task 2");
+
+const user = {
+    banks: [
+        {
+            address: {
+                city: "Tbilisi",
+            },
+        },
+        {
+            address: {
+                city: "Rustavi",
+            },
+        },
+        {
+            address: {
+                city: "Borjomi",
+            },
+        },
+        {
+            address: {
+                city: "Batumi",
+            },
+        },
+    ],
+};
+
+const getCity = (user) => {
+    const { banks: [, , { address: { city } }] } = user;
+    return city;
+};
+
+console.log (getCity(user)) // Borjomi
+
+//task - 3
+console.log("task 3");
+
+const obj = {
+  firstName: "David",
+  lastName: "Glunchadze",
+  data: {
     age: 35,
-    id: 3500 
-}
+    gender: "Male",
+  },
+  car: {
+    model: "volvo",
+    code: "XC60",
+  },
+  pets: ["cat", "dog", "parrot"],
+};
 
-const newUser = cloneUser(original) 
-
-console.log(original)//name: 'David', age: 35, id: 3500
-console.log(newUser) //name: 'David', age: 35, id: 3500
-
-console.log(newUser === original) //false
 
 
-//
-// Task 3 ----------------------------
-//
-console.log("Task 3--------------------------------")
+const deepClone = (obj) => {
+  const clonedObj = {
+    ...obj,
+    data: {...obj.data},
+    car: {...obj.car},
+    pets: [...obj.pets],
+  };
+  return clonedObj;
+};
 
-    function dicePlayers(){
-    let a = parseInt(Math.random()*10)
-    console.log('Player A number is' + ' ' + a);
+const obj2 = deepClone(obj);
 
-    let b = parseInt(Math.random()*10)
-    console.log('Player B number is' + ' ' + b)
-    
-    switch (true) {
-        case (a === 3):
-            console.log('Player A is winner');
-            break;
-        case (b === 3):
-            console.log('Player B is winner');
-            break;
-        case (a === b):
-            console.log('It is a draw');
-            break;
-        default:
-            console.log('Try again');
-        }
+obj.car.model = "Mercedes";
 
-    }
 
-    dicePlayers()
+console.log(obj.car.model); // Mercedes
+console.log(obj2.car.model) // volvo
