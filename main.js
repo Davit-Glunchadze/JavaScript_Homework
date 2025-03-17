@@ -1,90 +1,68 @@
 //Task 1
 
-console.log("Task 1");
+console.log("Task 1")
 
-const sum = (...nums) => {
-if (nums.length <= 2) {
-    console.log('Add more numbers')
+const replaceText = (string, valueToReplace, valueToReplaceWith) => {
+
+  return string.split(valueToReplace).join( valueToReplaceWith)
+
 }
 
-const value1 = nums[0] + nums[1];
-
-  const value2 = nums.slice(2).reduce((res, num ) => res * num, 1)
-
-    return [value1, value2]
-
-};
-
-console.log(sum(5, 10, 20, 5, 4, 3)); // [15, 1200]
-
-//task - 2
-console.log("task 2");
-
-const user = {
-    banks: [
-        {
-            address: {
-                city: "Tbilisi",
-            },
-        },
-        {
-            address: {
-                city: "Rustavi",
-            },
-        },
-        {
-            address: {
-                city: "Borjomi",
-            },
-        },
-        {
-            address: {
-                city: "Batumi",
-            },
-        },
-    ],
-};
-
-const getCity = (user) => {
-    const { banks: [, , { address: { city } }] } = user;
-    return city;
-};
-
-console.log (getCity(user)) // Borjomi
-
-//task - 3
-console.log("task 3");
-
-const obj = {
-  firstName: "David",
-  lastName: "Glunchadze",
-  data: {
-    age: 35,
-    gender: "Male",
-  },
-  car: {
-    model: "volvo",
-    code: "XC60",
-  },
-  pets: ["cat", "dog", "parrot"],
-};
+console.log(replaceText ("David Glunchadze", "Glunchadze", "Asabashvili")) // David Asabashvili
 
 
 
-const deepClone = (obj) => {
-  const clonedObj = {
-    ...obj,
-    data: {...obj.data},
-    car: {...obj.car},
-    pets: [...obj.pets],
-  };
-  return clonedObj;
-};
+//Task 2
 
-const obj2 = deepClone(obj);
+console.log("Task 2")
 
-obj.car.model = "Mercedes";
+const toUpperCase = (poem) =>{
+    const upperPoem = []
+
+    // for (const poemText of poem){
+    //     const splitText = poemText.split(' ');
+    //     const upperSplitText = []
+
+    //     for(const w of splitText){
+    //         const UpperPoemText = w[0].toUpperCase() + w.slice(1)
+    //         upperSplitText.push(UpperPoemText)
+    //     }
+
+    //     upperPoem.push(upperSplitText)
+    // }
+    // return upperPoem
+
+    return poem.map((poemText) => poemText.split(' ')
+            .map((w) => w[0].toUpperCase() + w.slice(1))
+            .join(" ")
+    )
+}
+
+console.log(toUpperCase(["william shakespeare sonnet 66 - tired with all these for restful death i cry, as to behold desert a beggar born, and needy nothing trimmed in jollity, and purest faith unhappily forsworn, and gilded honour shamefully misplaced, and maiden virtue rudely strumpeted, and right perfection wrongfully disgraced, and strength by limping sway disabled, and art made tongue-tied by authority, and folly doctor-like controlling skill, and simple truth miscalled simplicity, and captive good attending captain ill:, tired with all these from these would i I be gone, Save that to die I leave my love alone."]))
 
 
-console.log(obj.car.model); // Mercedes
-console.log(obj2.car.model) // volvo
+//Task 3
+
+console.log("Task 3")
+
+const users = [{ name: "James", age: 40 },{ name: "Lasha", age: 30 }, { name: "Giorgi", age: 20 }, { name: "Dato", age: 25 } ]
+
+// const sortedUsers = users.sort((a,b,) => {
+//     if (a.age < b.age ){
+//         return -1
+//     }
+//     if (a.age > b.age){
+//         return 1
+//     }
+//     return 0
+// })
+
+const sortedUsers = users.sort((a,b) => a.age - b.age)
+
+console.log(sortedUsers)
+ 
+// name: 'Giorgi', age: 20
+// name: 'Dato', age: 25
+// name: 'Lasha', age: 30
+// name: 'James', age: 40
+
