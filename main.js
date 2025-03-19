@@ -32,8 +32,6 @@ removerBtn.addEventListener('click', () => {
   }
 })
 
-
-
 //task 2
 
 const div2 = document.createElement('div')
@@ -42,7 +40,6 @@ testH2.textContent = 'Gandalf'
 const aTag = document.createElement('a')
 aTag.textContent = 'Go to profile'
 aTag.href = '#'
-
 
   //append
 div2.append(testH2, aTag)
@@ -56,7 +53,129 @@ div2.insertAdjacentHTML(
   //classes, ID
 div2.setAttribute('id','card')
 
+// task 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*  <div id=”card”>
     <h2>Gandalf</h2>
     <a href=”#”>Go to profile</a>
     </div>                         */
+
+// const data = [
+//   {
+//     id: 1,
+//     name: "Leanne Graham",
+//     username: "Bret",
+//     email: "Sincere@april.biz",
+//     address: {
+//       street: "Kulas Light",
+//       suite: "Apt. 556",
+//       city: "Gwenborough",
+//       zipcode: "92998-3874",
+//       geo: {
+//         lat: "-37.3159",
+//         lng: "81.1496",
+//       },
+//     },
+//     phone: "1-770-736-8031 x56442",
+//     website: "hildegard.org",
+//     company: {
+//       name: "Romaguera-Crona",
+//       catchPhrase: "Multi-layered client-server neural-net",
+//       bs: "harness real-time e-markets",
+//     },
+//   },
+//   {
+//     id: 1,
+//     name: "Leanne Graham",
+//     username: "Bret",
+//     email: "Sincere@april.biz",
+//     address: {
+//       street: " Light",
+//       suite: "Apt. 556",
+//       city: "Gwenborough",
+//       zipcode: "92998-3874",
+//       geo: {
+//         lat: "-37.3159",
+//         lng: "81.1496",
+//       },
+//     },
+//     phone: "1-770-736-8031 x56442",
+//     website: "hildegard.org",
+//     company: {
+//       name: "Romaguera-Crona",
+//       catchPhrase: "Multi-layered client-server neural-net",
+//       bs: "harness real-time e-markets",
+//     },
+//   },
+//   {
+//     id: 1,
+//     name: "Leanne Graham",
+//     username: "Bret",
+//     email: "Sincere@april.biz",
+//     address: {
+//       street: "Kulas ",
+//       suite: "Apt. 556",
+//       city: "Gwenborough",
+//       zipcode: "92998-3874",
+//       geo: {
+//         lat: "-37.3159",
+//         lng: "81.1496",
+//       },
+//     },
+//     phone: "1-770-736-8031 x56442",
+//     website: "hildegard.org",
+//     company: {
+//       name: "Romaguera-Crona",
+//       catchPhrase: "Multi-layered client-server neural-net",
+//       bs: "harness real-time e-markets",
+//     },
+//   },
+// ];
+
+
+// const result = data.map((user) => ({
+//   ...user,
+//   ...user.address,
+//   ...user.address.geo,
+//   ...user.company
+// }));
+
+// const names = document.querySelector("#myId");
+
+// const ol = document.createElement("ol");
+
+// result.forEach((user) => {
+//   const li = document.createElement("li");
+//   li.textContent = `Name: ${user.name}, Street: ${user.street}, city: ${user.city}, catchPhrase: ${user.catchPhrase} `;
+//   ol.appendChild(li);
+// });
+
+// names.appendChild(ol);
