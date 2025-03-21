@@ -1,68 +1,126 @@
-//Task 1
+// task 1
+//
+const div1 = document.createElement("div");
+const btn = document.createElement("button");
+const testH1 = document.createElement("h1");
+testH1.textContent = "Hello there";
+btn.textContent = "Text disappears";
 
-console.log("Task 1")
+// classes
+div1.classList.add("div1");
+testH1.classList.add("testH1");
+btn.classList.add("btn");
+btn.setAttribute("id", "btnid");
 
-const replaceText = (string, valueToReplace, valueToReplaceWith) => {
+// append
+div1.append(btn, testH1);
+document.body.append(div1);
+div1.insertAdjacentHTML("afterbegin", "Task 1");
 
-  return string.split(valueToReplace).join( valueToReplaceWith)
+const removerBtn = document.querySelector("#btnid");
 
-}
-
-console.log(replaceText ("David Glunchadze", "Glunchadze", "Asabashvili")) // David Asabashvili
-
-
-
-//Task 2
-
-console.log("Task 2")
-
-const toUpperCase = (poem) =>{
-    const upperPoem = []
-
-    // for (const poemText of poem){
-    //     const splitText = poemText.split(' ');
-    //     const upperSplitText = []
-
-    //     for(const w of splitText){
-    //         const UpperPoemText = w[0].toUpperCase() + w.slice(1)
-    //         upperSplitText.push(UpperPoemText)
-    //     }
-
-    //     upperPoem.push(upperSplitText)
-    // }
-    // return upperPoem
-
-    return poem.map((poemText) => poemText.split(' ')
-            .map((w) => w[0].toUpperCase() + w.slice(1))
-            .join(" ")
-    )
-}
-
-console.log(toUpperCase(["william shakespeare sonnet 66 - tired with all these for restful death i cry, as to behold desert a beggar born, and needy nothing trimmed in jollity, and purest faith unhappily forsworn, and gilded honour shamefully misplaced, and maiden virtue rudely strumpeted, and right perfection wrongfully disgraced, and strength by limping sway disabled, and art made tongue-tied by authority, and folly doctor-like controlling skill, and simple truth miscalled simplicity, and captive good attending captain ill:, tired with all these from these would i I be gone, Save that to die I leave my love alone."]))
+removerBtn.addEventListener("click", () => {
+  if (testH1.style.display === "none") {
+    testH1.style.display = "block";
+    btn.textContent = "Text disappears";
+  } else {
+    testH1.style.display = "none";
+    btn.textContent = "Text appears";
+  }
+});
 
 
-//Task 3
 
-console.log("Task 3")
+//
+//task 2
+//
+const div2 = document.createElement("div");
+const testH2 = document.createElement("h2");
+testH2.textContent = "Gandalf";
+const aTag = document.createElement("a");
+aTag.textContent = "Go to profile";
+aTag.href = "#";
 
-const users = [{ name: "James", age: 40 },{ name: "Lasha", age: 30 }, { name: "Giorgi", age: 20 }, { name: "Dato", age: 25 } ]
+//append
+div2.append(testH2, aTag);
+document.body.append(div2);
 
-// const sortedUsers = users.sort((a,b,) => {
-//     if (a.age < b.age ){
-//         return -1
-//     }
-//     if (a.age > b.age){
-//         return 1
-//     }
-//     return 0
-// })
+div2.insertAdjacentHTML("afterbegin", "Task 2");
 
-const sortedUsers = users.sort((a,b) => a.age - b.age)
+//classes, ID
+div2.setAttribute("id", "card");
 
-console.log(sortedUsers)
- 
-// name: 'Giorgi', age: 20
-// name: 'Dato', age: 25
-// name: 'Lasha', age: 30
-// name: 'James', age: 40
 
+//
+// task 3
+//
+let answers = [];
+let questions = [];
+let correctAnswer = [];
+let score = 0; 
+
+
+// მონაცემების მიღება სხვა ფაილიდან
+fetch("questions.json")
+  .then((response) => response.json())
+  .then((data) => {
+    answers = data.map((item) => item.answers);
+    questions = data.map((item) => item.question);
+    correctAnswer = data.map((item) => item.correctAnswer);
+
+    // div მიღება
+    const gameDiv = document.getElementById("gamequiz");
+    // კითხვის div შექმნა
+    const qiuzDiv = document.createElement("div");
+    qiuzDiv.setAttribute("id", "quiz");
+    if (gameDiv.children.length >= 1) {
+      gameDiv.children[0].after(qiuzDiv);
+    } else {
+      gameDiv.appendChild(qiuzDiv);
+    }
+
+    // შეკითხვის div შექმნა
+    questions.forEach((question, index) => {
+      const questionDiv = document.createElement("div");
+      questionDiv.classList.add("question");
+
+      // კითხვის ველის შექმნა-ჩასმა
+      const questionLabel = document.createElement("h3");
+      questionLabel.textContent = question;
+      questionDiv.appendChild(questionLabel);
+
+      // პასუხების ველის შექმნა და დამატება
+      answers[index].forEach((answer) => {
+        const label = document.createElement("label");
+        label.classList.add("label");
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = `group${index}`; // რომ თითოეულ კითხვას თავისი ჯგუფი ჰქონდეს
+        input.value = answer; // მნიშვნელობა = პასუხი
+
+        label.appendChild(input);
+        label.append(answer);
+        questionDiv.appendChild(label);
+
+        // click ივენთი
+        input.addEventListener("click", () => {
+          // სწორი პასუხი
+          if (input.value === correctAnswer[index]) {
+            label.style.background = "green"; // მწვანე ფონი სწორი პასუხისთვის
+            label.style.color = "aqua";
+            score++; // ამატებს ქულას
+          } else {
+            label.style.background = "red"; // წითელი ფონი არასწორი პასუხისთვის
+            label.style.color = "aqua";
+          }
+          
+          // ქულების გამოტანა
+          const scoreDiv = document.getElementById("your-score");
+          scoreDiv.textContent = `Your Score: ${score}`;
+        });
+      });
+
+      // დამატება მთავარ div-ში
+      qiuzDiv.appendChild(questionDiv);
+    });
+  });
