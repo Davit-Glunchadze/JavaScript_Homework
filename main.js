@@ -1,126 +1,59 @@
-// task 1
 //
-const div1 = document.createElement("div");
-const btn = document.createElement("button");
-const testH1 = document.createElement("h1");
-testH1.textContent = "Hello there";
-btn.textContent = "Text disappears";
+// Task 1
+//
 
-// classes
-div1.classList.add("div1");
-testH1.classList.add("testH1");
-btn.classList.add("btn");
-btn.setAttribute("id", "btnid");
+//main div
+const task1 = document.getElementById("task1");
 
-// append
-div1.append(btn, testH1);
-document.body.append(div1);
-div1.insertAdjacentHTML("afterbegin", "Task 1");
+//button
+const button = document.createElement("button");
+task1.appendChild(button);
+button.innerHTML = "CLICK ME";
+button.classList.add("button");
 
-const removerBtn = document.querySelector("#btnid");
-
-removerBtn.addEventListener("click", () => {
-  if (testH1.style.display === "none") {
-    testH1.style.display = "block";
-    btn.textContent = "Text disappears";
-  } else {
-    testH1.style.display = "none";
-    btn.textContent = "Text appears";
-  }
+//div
+const div = document.createElement("div");
+task1.appendChild(div);
+div.classList.add("hide");
+//event
+button.addEventListener("click", () => {
+  div.classList.toggle("div");
 });
 
-
-
 //
-//task 2
+// Task 2
 //
-const div2 = document.createElement("div");
-const testH2 = document.createElement("h2");
-testH2.textContent = "Gandalf";
-const aTag = document.createElement("a");
-aTag.textContent = "Go to profile";
-aTag.href = "#";
 
-//append
-div2.append(testH2, aTag);
-document.body.append(div2);
+//main div
+const task2 = document.getElementById("task2");
+console.log(task2);
 
-div2.insertAdjacentHTML("afterbegin", "Task 2");
+//div
+const colorDiv = document.createElement("div");
+task2.appendChild(colorDiv);
+colorDiv.classList.add("collorDiv");
 
-//classes, ID
-div2.setAttribute("id", "card");
+//button
+const colorButton = document.createElement("button");
+task2.appendChild(colorButton);
+colorButton.innerHTML = "change collor";
+colorButton.classList.add("button");
 
+//input
+const colorInput = document.createElement("input");
+colorDiv.appendChild(colorInput);
+colorInput.classList.add("input");
+colorInput.placeholder = "red, blue, green, black, white";
+const validColors = ["red", "blue", "green", "black", "white"];
 
-//
-// task 3
-//
-let answers = [];
-let questions = [];
-let correctAnswer = [];
-let score = 0; 
+//event
+colorButton.addEventListener("click", () => {
+  const userColor = colorInput.value.toLowerCase();
 
-
-// მონაცემების მიღება სხვა ფაილიდან
-fetch("questions.json")
-  .then((response) => response.json())
-  .then((data) => {
-    answers = data.map((item) => item.answers);
-    questions = data.map((item) => item.question);
-    correctAnswer = data.map((item) => item.correctAnswer);
-
-    // div მიღება
-    const gameDiv = document.getElementById("gamequiz");
-    // კითხვის div შექმნა
-    const qiuzDiv = document.createElement("div");
-    qiuzDiv.setAttribute("id", "quiz");
-    if (gameDiv.children.length >= 1) {
-      gameDiv.children[0].after(qiuzDiv);
-    } else {
-      gameDiv.appendChild(qiuzDiv);
-    }
-
-    // შეკითხვის div შექმნა
-    questions.forEach((question, index) => {
-      const questionDiv = document.createElement("div");
-      questionDiv.classList.add("question");
-
-      // კითხვის ველის შექმნა-ჩასმა
-      const questionLabel = document.createElement("h3");
-      questionLabel.textContent = question;
-      questionDiv.appendChild(questionLabel);
-
-      // პასუხების ველის შექმნა და დამატება
-      answers[index].forEach((answer) => {
-        const label = document.createElement("label");
-        label.classList.add("label");
-        const input = document.createElement("input");
-        input.type = "radio";
-        input.name = `group${index}`; // რომ თითოეულ კითხვას თავისი ჯგუფი ჰქონდეს
-        input.value = answer; // მნიშვნელობა = პასუხი
-
-        label.appendChild(input);
-        label.append(answer);
-        questionDiv.appendChild(label);
-
-        // click ივენთი
-        input.addEventListener("click", () => {
-          // სწორი პასუხი
-          if (input.value === correctAnswer[index]) {
-            label.style.background = "green"; // მწვანე ფონი სწორი პასუხისთვის
-            label.style.color = "aqua";
-            score++; // ამატებს ქულას
-          } else {
-            label.style.background = "red"; // წითელი ფონი არასწორი პასუხისთვის
-            label.style.color = "aqua";
-          }
-          
-          // ქულების გამოტანა
-          const scoreDiv = document.getElementById("your-score");
-          scoreDiv.textContent = `Your Score: ${score}`;
-        });
-      });
-
-      // დამატება მთავარ div-ში
-      qiuzDiv.appendChild(questionDiv);
-    });
-  });
+  if (validColors.includes(userColor)) {
+    colorDiv.style.background = userColor;
+  } else {
+    colorInput.value = "this is not a valid color";
+    colorDiv.style.background = "yellow";
+  }
+});

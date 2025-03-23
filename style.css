@@ -8,36 +8,11 @@ body {
   background-color: aqua;
 }
 
-/* task 1 / task 2 */
+/* task 1 */
 
-.div1,
-#card {
-  padding: 50px;
-  max-width: 500px;
-  height: 250px;
-  margin: 10px auto;
+.button {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 30px;
-  background-color: blueviolet;
-  border: solid 2px;
-  border-radius: 10px;
-}
-
-#card a {
-  background-color: blueviolet;
-  color: red;
-}
-
-.testH1,
-#card h2 {
-  color: aqua;
-  background-color: blueviolet;
-}
-
-.btn {
+  margin: 25px auto;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -45,83 +20,59 @@ body {
   color: aquamarine;
 }
 
-/* task 3 */
+#task1 {
+  height: 300px;
+  margin-bottom: 40px;
+}
 
-.quiz {
-  max-width: 1000px;
-  border: 2px solid;
-  border-radius: 5px;
+.hide {
+  display: none;
+  padding: 50px;
+  max-width: 500px;
+  height: 200px;
   margin: 10px auto;
-  padding: 20px;
-  background-color: blue;
-}
-
-.game {
-  display: flex;
-  flex-direction: column;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.game h1 {
-  text-align: center;
-  color: blanchedalmond;
-  font-size: 40px;
-  margin: 20px;
-}
-
-.question{
-  background-color: rgb(5, 143, 143);
-  padding: 20px 50px 30px;
-  border: 2px solid;
+  justify-content: flex-start;
+  gap: 30px;
+  background: linear-gradient(rgba(1, 1, 1, 1), rgba(1, 1, 1, 0.3));
+  border: solid 2px;
   border-radius: 10px;
-  margin-bottom: 20px;
-
 }
 
-.game h3 {
-  margin: 20px;
-  color: rgb(3, 20, 20);
-  font-size: 20px;
+.div {
+  display: block;
 }
 
-.label {
-  display: flex;
-  border: 1px solid;
-  padding: 10px;
-  border-radius: 10px;
-  background: aqua;
-  margin: 10px;
-  font-size: 20px;
-  color:rgb(15, 3, 3);
-  letter-spacing: 1px;
-  gap: 10px;
-
-}
-
-.label:hover{
-  cursor: pointer;
-  transform: scale(1.1);
-  transition: ease 0.4s;
-  background-color: rgb(166, 107, 221);
-}
-
-.score{
-  display: flex;
-  
-  width: 150px;
+.input {
+  display: none;
+  padding: 50px;
+  max-width: 500px;
   height: 50px;
-  background-color: rgb(89, 197, 197);
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
   margin: 10px auto;
-  font-size: 20px ;
-  color:rgb(29, 4, 139);
-  border: 2px solid black;
+  justify-content: flex-start;
+  gap: 30px;
+  border: solid 2px;
+  border-radius: 10px;
 }
 
+/* task 2 */
 
-.bottom-line{
+.collorDiv {
   display: flex;
+  padding: 250px;
+  max-width: 500px;
+  height: 250px;
+  margin: 10px auto;
+  justify-content: center;
+  gap: 30px;
+  background: linear-gradient(rgba(1, 1, 1, 1), rgba(1, 1, 1, 0.3));
+  border: solid 2px;
+  border-radius: 10px;
+}
+
+.input {
+  display: flex;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: aquamarine;
 }
