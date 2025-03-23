@@ -10,8 +10,10 @@ body {
 
 /* task 1 */
 
+
 .button {
   display: flex;
+  margin: 25px auto;
   margin: 25px auto;
   padding: 10px;
   border-radius: 5px;
@@ -20,7 +22,7 @@ body {
   color: aquamarine;
 }
 
-#task1{
+#task1 {
   height: 300px;
   margin-bottom: 40px;
 }
@@ -35,13 +37,17 @@ body {
   gap: 30px;
   background: linear-gradient(rgba(1, 1, 1, 1), rgba(1, 1, 1, 0.3));
   border: solid 2px;
+  justify-content: flex-start;
+  gap: 30px;
+  background: linear-gradient(rgba(1, 1, 1, 1), rgba(1, 1, 1, 0.3));
+  border: solid 2px;
   border-radius: 10px;
-  
 }
 
 .div {
   display: block;
 }
+
 
 .input {
   display: none;
@@ -63,17 +69,17 @@ body {
   max-width: 500px;
   height: 250px;
   margin: 10px auto;
-  justify-content:center;
+  justify-content: center;
   gap: 30px;
   background: linear-gradient(rgba(1, 1, 1, 1), rgba(1, 1, 1, 0.3));
   border: solid 2px;
   border-radius: 10px;
 }
 
-.input{
+.input {
   display: flex;
   margin: 0 auto;
   padding: 10px;
   border-radius: 5px;
-  background-color:aquamarine;
+  background-color: aquamarine;
 }

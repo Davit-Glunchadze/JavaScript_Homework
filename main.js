@@ -2,6 +2,7 @@
 // Task 1
 //
 
+
 //main div
 const task1 = document.getElementById("task1");
 
@@ -15,6 +16,7 @@ button.classList.add("button");
 const div = document.createElement("div");
 task1.appendChild(div);
 div.classList.add("hide");
+
 //event
 button.addEventListener("click", () => {
   div.classList.toggle("div");
@@ -44,7 +46,7 @@ const colorInput = document.createElement("input");
 colorDiv.appendChild(colorInput);
 colorInput.classList.add("input");
 colorInput.placeholder = "red, blue, green, black, white";
-const validColors = ["red", "blue", "green", "black", "white" ];
+const validColors = ["red", "blue", "green", "black", "white"];
 
 //event
 colorButton.addEventListener("click", () => {
@@ -57,3 +59,4 @@ colorButton.addEventListener("click", () => {
     colorDiv.style.background = "yellow";
   }
 });
+
