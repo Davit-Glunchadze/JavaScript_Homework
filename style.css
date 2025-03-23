@@ -9,9 +9,12 @@ body {
 }
 
 /* task 1 */
+/* task 1 */
 
 .button {
+.button {
   display: flex;
+  margin: 25px auto;
   margin: 25px auto;
   padding: 10px;
   border-radius: 5px;
@@ -30,7 +33,16 @@ body {
   padding: 50px;
   max-width: 500px;
   height: 200px;
+.hide {
+  display: none;
+  padding: 50px;
+  max-width: 500px;
+  height: 200px;
   margin: 10px auto;
+  justify-content: flex-start;
+  gap: 30px;
+  background: linear-gradient(rgba(1, 1, 1, 1), rgba(1, 1, 1, 0.3));
+  border: solid 2px;
   justify-content: flex-start;
   gap: 30px;
   background: linear-gradient(rgba(1, 1, 1, 1), rgba(1, 1, 1, 0.3));
@@ -38,6 +50,8 @@ body {
   border-radius: 10px;
 }
 
+.div {
+  display: block;
 .div {
   display: block;
 }
@@ -51,7 +65,21 @@ body {
   justify-content: flex-start;
   gap: 30px;
   border: solid 2px;
+.input {
+  display: none;
+  padding: 50px;
+  max-width: 500px;
+  height: 50px;
+  margin: 10px auto;
+  justify-content: flex-start;
+  gap: 30px;
+  border: solid 2px;
   border-radius: 10px;
+}
+
+/* task 2 */
+
+.collorDiv {
 }
 
 /* task 2 */
