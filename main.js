@@ -2,7 +2,6 @@
 // Task 1
 //
 
-
 //main div
 const task1 = document.getElementById("task1");
 
@@ -17,6 +16,13 @@ const div = document.createElement("div");
 task1.appendChild(div);
 div.classList.add("hide");
 
+//h1
+const h1 = document.createElement("h1")
+h1.classList.add("h1")
+h1.innerHTML = "Hello There"
+div.append(h1)
+
+
 //event
 button.addEventListener("click", () => {
   div.classList.toggle("div");
@@ -28,7 +34,6 @@ button.addEventListener("click", () => {
 
 //main div
 const task2 = document.getElementById("task2");
-console.log(task2);
 
 //div
 const colorDiv = document.createElement("div");
@@ -55,8 +60,48 @@ colorButton.addEventListener("click", () => {
   if (validColors.includes(userColor)) {
     colorDiv.style.background = userColor;
   } else {
-    colorInput.value = "this is not a valid color";
     colorDiv.style.background = "yellow";
+    window.alert("this is not a valid color");
+    colorInput.value = "Please enter a valid color";
   }
 });
 
+//
+// Task 3
+//
+
+//main.div
+const task3 = document.getElementById("task3");
+console.log(task3);
+
+//div
+const mathDiv = document.createElement("div");
+task3.appendChild(mathDiv);
+mathDiv.classList.add("collorDiv");
+
+//input
+const mathInput = document.createElement("input");
+mathDiv.append(mathInput);
+mathInput.classList.add("input");
+mathInput.placeholder = "Enter numbers (1:2:3:4)";
+
+//answer - p
+const answer = document.createElement("p");
+mathDiv.appendChild(answer);
+answer.innerHTML = "0";
+
+//button
+const mathButton = document.createElement("button");
+task3.appendChild(mathButton);
+mathButton.innerHTML = "average";
+mathButton.classList.add("button");
+
+mathButton.addEventListener("click", () => {
+  const numbers = mathInput.value;
+  const average = numbers.split(":").map(Number);
+  const sum = average.reduce((acc, num) => acc + num, 0)
+  const avg = sum / average.length;
+  answer.innerHTML = Math.round(avg);
+ console.log(avg)
+});
+1
