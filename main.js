@@ -1,107 +1,161 @@
-//
-// Task 1
-//
+/// TASK 1
 
-//main div
-const task1 = document.getElementById("task1");
+function mySetTimeout(delay) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("hello There");
+    }, delay);
+  });
+}
 
-//button
-const button = document.createElement("button");
-task1.appendChild(button);
-button.innerHTML = "CLICK ME";
-button.classList.add("button");
+const started = Date.now();
 
-//div
-const div = document.createElement("div");
-task1.appendChild(div);
-div.classList.add("hide");
-
-//h1
-const h1 = document.createElement("h1")
-h1.classList.add("h1")
-h1.innerHTML = "Hello There"
-div.append(h1)
-
-
-//event
-button.addEventListener("click", () => {
-  div.classList.toggle("div");
+mySetTimeout(2000)
+  .then((res) => { console.log(`${res} (TASK 1)`) // დრო 2 წამი
+    //დროის გამოთვლა
+  const end = Date.now()
+  const totalTime = (end - started)/1000
+  console.log(`Total time: ${totalTime} seconds`)
 });
 
-//
-// Task 2
-//
+/// TASK 2 --- option A  then/catch
 
-//main div
-const task2 = document.getElementById("task2");
+//შექმნა
+function makeToys(makeTime) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (Math.random() > 0.2) {
+        resolve("Undefected"); //უდეფექტო (3 წამი)
+      } else {
+        reject("Defected"); //დეფექტური --- კოდი გაჩერდა (3 წამი)
+      }
+    }, makeTime);
+  });
+}
 
-//div
-const colorDiv = document.createElement("div");
-task2.appendChild(colorDiv);
-colorDiv.classList.add("collorDiv");
+// გაყიდვა
+function sellToys(sellStatus, sellTime) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (sellStatus === "Undefected") {
+        if (Math.random() > 0.7) {
+          resolve("Toy has been sold"); //უდეფექტო --- გაიყიდა (+ 1  წამი = 4)
+        } else {
+          reject("Toy has not been sold"); //უდეფექტო --- არ გაიყიდა --- კოდი გაჩერდა (+ 1  წამი = 4)
+        }
+      }
+    }, sellTime);
+  });
+}
+//მიტანა
+function deliverToys(deliverStatus, deliverTime) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (deliverStatus === "Toy has been sold") {
+        if (Math.random() > 0.5) {
+          resolve("Toy has been delivered"); //უდეფექტო --- გაიყიდა --- მივიდა მომხმარებელთან ---კოდი გაჩერდა (+ 2 წამი = 6)
+        } else {
+          reject("Toy has not been delivered"); //უდეფექტო --- გაიყიდა ---ვერ მივიდა მომხმარებელთან ---კოდი გაჩერდა (+ 2 წამი = 6)
+        }
+      }
+    }, deliverTime);
+  });
+}
 
-//button
-const colorButton = document.createElement("button");
-task2.appendChild(colorButton);
-colorButton.innerHTML = "change collor";
-colorButton.classList.add("button");
+const startTime = Date.now();
 
-//input
-const colorInput = document.createElement("input");
-colorDiv.appendChild(colorInput);
-colorInput.classList.add("input");
-colorInput.placeholder = "red, blue, green, black, white";
-const validColors = ["red", "blue", "green", "black", "white"];
+makeToys(3000)
+  .then((sellStatus) => sellToys(sellStatus, 1000))
+  .then((deliverStatus) => deliverToys(deliverStatus, 2000))
+  .then((res) => {
+    console.log(`${res} (TASK 2 - Option A)`);
+    // დროის გამოთვლა
+    const endTime = Date.now();
+    const totalTimeInSeconds = (endTime - startTime) / 1000;
+    console.log(`Total time: ${totalTimeInSeconds} seconds`);
+  })
+  .catch((error) => {
+    console.log(`${error} (TASK 2 - Option A)`);
+    //დროის გამოთვლა
+    const endTime = Date.now();
+    const totalTimeInSeconds = (endTime - startTime) / 1000;
+    console.log(`Total time: ${totalTimeInSeconds} seconds`);
+  });
 
-//event
-colorButton.addEventListener("click", () => {
-  const userColor = colorInput.value.toLowerCase();
+////// TASK 1 --- option B  async/await
 
-  if (validColors.includes(userColor)) {
-    colorDiv.style.background = userColor;
-  } else {
-    colorDiv.style.background = "yellow";
-    window.alert("this is not a valid color");
-    colorInput.value = "Please enter a valid color";
+//შექმნა
+async function makeToys() {
+  function mySetTimeout(delay) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (Math.random() > 0.2) {
+          resolve ("Undefected"); //უდეფექტო (3 წამი)
+        } else {
+          reject ("Defected"); //დეფექტური --- კოდი გაჩერდა (3 წამი)
+        }
+      }, delay);
+    });
   }
-});
+  return await mySetTimeout(3000);
+}
 
-//
-// Task 3
-//
+// გაყიდვა
+async function sellToys(sellStatus) {
+    function mySetTimeout(delay) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (sellStatus === "Undefected") {
+            if (Math.random() > 0.7) {
+              resolve("Toy has been sold"); //უდეფექტო --- გაიყიდა (+ 1  წამი = 4)
+            } else {
+              reject("Toy has not been sold"); //უდეფექტო --- არ გაიყიდა --- კოდი გაჩერდა (+ 1  წამი = 4)
+            }
+          }
+        }, delay);
+      });
+    }
+    return await mySetTimeout(1000)
+}
 
-//main.div
-const task3 = document.getElementById("task3");
-console.log(task3);
+// მიტანა
+async function deliverToys(deliverStatus) {
+    function mySetTimeout(delay) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (deliverStatus === "Toy has been sold") {
+            if (Math.random() > 0.5) {
+              resolve("Toy has been delivered"); //უდეფექტო --- გაიყიდა --- მივიდა მომხმარებელთან ---კოდი გაჩერდა (+ 2 წამი = 6)
+            } else {
+              reject("Toy has not been delivered"); //უდეფექტო --- გაიყიდა ---ვერ მივიდა მომხმარებელთან ---კოდი გაჩერდა (+ 2 წამი = 6)
+            }
+          }
+        }, delay);
+      });
+    }
+    return await mySetTimeout(2000)
+}
 
-//div
-const mathDiv = document.createElement("div");
-task3.appendChild(mathDiv);
-mathDiv.classList.add("collorDiv");
+const start = Date.now();
 
-//input
-const mathInput = document.createElement("input");
-mathDiv.append(mathInput);
-mathInput.classList.add("input");
-mathInput.placeholder = "Enter numbers (1:2:3:4)";
+async function toys() {
+  try {
+    const sellStatus = await makeToys()
+    const deliverStatus = await sellToys(sellStatus)
+    const result = await deliverToys(deliverStatus)
+    console.log(`${result} (TASK 2 - Option B)`);
+    //დროის გამოთვლა
+    const end = Date.now();
+    const totalTimeInSeconds = (end - start) / 1000;
+    console.log(`Total time: ${totalTimeInSeconds} seconds`)
+  } catch (error) {
+    console.log(`${error} (TASK 2 - Option B)`);
+    // დროის გამოთვლა
+    const end = Date.now();
+    const totalTimeInSeconds = (end - start) / 1000;
+    console.log(`Total time: ${totalTimeInSeconds} seconds`)
+  }
+}
 
-//answer - p
-const answer = document.createElement("p");
-mathDiv.appendChild(answer);
-answer.innerHTML = "0";
+toys()
 
-//button
-const mathButton = document.createElement("button");
-task3.appendChild(mathButton);
-mathButton.innerHTML = "average";
-mathButton.classList.add("button");
-
-mathButton.addEventListener("click", () => {
-  const numbers = mathInput.value;
-  const average = numbers.split(":").map(Number);
-  const sum = average.reduce((acc, num) => acc + num, 0)
-  const avg = sum / average.length;
-  answer.innerHTML = Math.round(avg);
- console.log(avg)
-});
-1
