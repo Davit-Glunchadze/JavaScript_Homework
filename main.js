@@ -1,11 +1,27 @@
-<<<<<<< HEAD
- //setTimeout ფუნქცია იყენებს callback-ს, დაწერეთ მისი promise-ზე დადაფუძნებული ალტერნატივა ● (მაგ: mySetTimeout(delay).then(...) 
- // ● გამოიყენე პირველ დავალებაში შექმნილი ფუნქცია, რათა განავრცო ჩვენს მიერ დაწერილი “Toy Shop” შემდეგი პირობის იმპლემენტაციით: 
- // ➔ სათამაშოს დამზადებას სჭირდება დაახლოებით 3 წამი. (დროის მითითება შესაძლებელი უნდა იყოს დინამიურად) 
- // ➔ დავამატოთ კიდევ ერთი ნაბიჯი, რომელსაც დავარქმევთ პირობითად, “deliverToys”, რომლის დაყოვნებაც 2 წამია (გადაეცემა დინამიურად)
 
-/// TASK 1
-=======
+//
+// მოცემულია მასივი [{name: 'Temo', age: 25}, {name: 'Lasha', age: 21}, {name: 'Ana', age: 28}]
+// ● დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს user - ების მასივს და დააბრუნებს ყველაზე პატარა ასაკის მქონე ადამიანის სახელს
+// ● დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს user ობიექტს და დააბრუნებს იგივე მნიშვნელობების მქონე ახალ (განსხვავებულ) ობიექტს
+// ● დაწერე პროგრამა, სადაც ორი a და b მომხმარებლები აგორებენ კამათელს მანამ, სანამ არ გაგორდება, რომელიც უფრო ნაკლებ ცდაში გააგორებს სამიანს ის არის გამარჯვებული
+
+///
+// Task 1------------------------------------
+///
+console.log("Task 1--------------------------------")
+
+const user = [
+    { name: "temo", age: 25 },
+    { name: "Lasha", age: 21 },
+    { name: "Ana", age: 28 },
+]
+
+function getYoungerAge(){
+    const getAges = user.map(person => person.age)
+    const youngest = Math.min(...getAges)
+    const youngestPerson = user.find(person => person.age === youngest)
+    console.log(youngestPerson)
+}
  //
  // დაწერე ფუნქცია, რომელიც მიიღებს სამ პარამეტრს (string, valueToReplace, valueToReplaceWith), ჩაანაცვლებს "valueToReplace"-ს "valueToReplaceWith" მნიშვნელობით და დააბრუნებს ახალ stringს 
  // ● არ გამოიყენო string.replace() ფუნქცია 
@@ -15,10 +31,11 @@
 
 console.log("Task 1")
 
+
 const replaceText = (string, valueToReplace, valueToReplaceWith) => {
 
   return string.split(valueToReplace).join( valueToReplaceWith)
->>>>>>> 08d436f92ff0af926965b918042b0b57dac46b9a
+
 
 }
 
@@ -80,3 +97,5 @@ console.log(sortedUsers)
 // name: 'Lasha', age: 30
 // name: 'James', age: 40
 
+
+    dicePlayers()
