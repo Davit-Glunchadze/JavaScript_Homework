@@ -1,0 +1,29 @@
+[
+    {
+      "question": "რომელი მეთოდი გამოიყენება სტრინგიდანდან ცარიელი ადგილების მოსაშორებლად?",
+      "answers": ["slice()", "trim()", "split()", "concat()"],
+      "correctAnswer": "trim()"
+    },
+    {
+      "question": "რომელი მეთოდი არეგისტრირებს ივენთს HTML ელემენტზე?",
+      "answers": ["setAttribute()", "addEventListener()", "getElementById()", "removeChild()"],
+      "correctAnswer": "addEventListener()"
+    },
+    {
+      "question": "რომელი მეთოდით შეგვიძლია HTML დოკუმენტში ახალი ელემენტის დამატება?",
+      "answers": ["removeChild()","replaceChild()", "setAttribute()", "appendChild()"],
+      "correctAnswer": "appendChild()"
+    },
+    {
+      "question": "რომელი მეთოდი ამოწმებს, შეიცავს თუ არა მასივი კონკრეტულ მნიშვნელობას?",
+      "answers": ["some()","find()", "includes()", "filter()"],
+      "correctAnswer": "includes()"
+    },
+    {
+      "question": "რომელი მეთოდით შეგვიძლია HTML ელემენტის კლასის დამატება?",
+      "answers": ["setAttribute()","classList.add()", "addClass()", "appendChild()"],
+      "correctAnswer": "classList.add()"
+    }
+  ]
+
+  
