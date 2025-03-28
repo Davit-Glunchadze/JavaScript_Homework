@@ -1,8 +1,4 @@
 
-<<<<<<< HEAD
-=======
-//
->>>>>>> 1cf9ca08e77b3e986ba89ea150deeb33268b2294
 // დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს n ცალ რიცხვს (n > 2). ფუნქციამ უნდა დააბრუნოს 2 - ელემენტიანი მასივი, სადაც პირველი ელემენტია პირველი და მეორე პარამეტრის ჯამი, 
 // ხოლო მეორე ელემენტი - მესამე ელემენტიდან დაწყებული ყველა დანარჩენის ნამრავლი 
 // ● დავუშვათ გვინდა ობიექტიდან წავიკითხოთ შემდეგი ველი: user.banks[2].address.city. დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს user ობიექტს და დააბრუნებს cityს. 
@@ -12,162 +8,91 @@
 
 //Task 1
 
-function mySetTimeout(delay) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("hello There");
-    }, delay);
-  });
+console.log("Task 1");
+
+const sum = (...nums) => {
+if (nums.length <= 2) {
+    console.log('Add more numbers')
 }
 
-const started = Date.now();
+const value1 = nums[0] + nums[1];
 
-mySetTimeout(2000)
-  .then((res) => { console.log(`${res} (TASK 1)`) // დრო 2 წამი
-    //დროის გამოთვლა
-  const end = Date.now()
-  const totalTime = (end - started)/1000
-  console.log(`Total time: ${totalTime} seconds`)
-});
+  const value2 = nums.slice(2).reduce((res, num ) => res * num, 1)
 
-/// TASK 2 --- option A  then/catch
+    return [value1, value2]
 
-//შექმნა
-function makeToys(makeTime) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (Math.random() > 0.2) {
-        resolve("Undefected"); //უდეფექტო (3 წამი)
-      } else {
-        reject("Defected"); //დეფექტური --- კოდი გაჩერდა (3 წამი)
-      }
-    }, makeTime);
-  });
-}
+};
 
-// გაყიდვა
-function sellToys(sellStatus, sellTime) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (sellStatus === "Undefected") {
-        if (Math.random() > 0.7) {
-          resolve("Toy has been sold"); //უდეფექტო --- გაიყიდა (+ 1  წამი = 4)
-        } else {
-          reject("Toy has not been sold"); //უდეფექტო --- არ გაიყიდა --- კოდი გაჩერდა (+ 1  წამი = 4)
-        }
-      }
-    }, sellTime);
-  });
-}
-//მიტანა
-function deliverToys(deliverStatus, deliverTime) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (deliverStatus === "Toy has been sold") {
-        if (Math.random() > 0.5) {
-          resolve("Toy has been delivered"); //უდეფექტო --- გაიყიდა --- მივიდა მომხმარებელთან ---კოდი გაჩერდა (+ 2 წამი = 6)
-        } else {
-          reject("Toy has not been delivered"); //უდეფექტო --- გაიყიდა ---ვერ მივიდა მომხმარებელთან ---კოდი გაჩერდა (+ 2 წამი = 6)
-        }
-      }
-    }, deliverTime);
-  });
-}
+console.log(sum(5, 10, 20, 5, 4, 3)); // [15, 1200]
 
-const startTime = Date.now();
+//task - 2
+console.log("task 2");
 
-makeToys(3000)
-  .then((sellStatus) => sellToys(sellStatus, 1000))
-  .then((deliverStatus) => deliverToys(deliverStatus, 2000))
-  .then((res) => {
-    console.log(`${res} (TASK 2 - Option A)`);
-    // დროის გამოთვლა
-    const endTime = Date.now();
-    const totalTimeInSeconds = (endTime - startTime) / 1000;
-    console.log(`Total time: ${totalTimeInSeconds} seconds`);
-  })
-  .catch((error) => {
-    console.log(`${error} (TASK 2 - Option A)`);
-    //დროის გამოთვლა
-    const endTime = Date.now();
-    const totalTimeInSeconds = (endTime - startTime) / 1000;
-    console.log(`Total time: ${totalTimeInSeconds} seconds`);
-  });
+const user = {
+    banks: [
+        {
+            address: {
+                city: "Tbilisi",
+            },
+        },
+        {
+            address: {
+                city: "Rustavi",
+            },
+        },
+        {
+            address: {
+                city: "Borjomi",
+            },
+        },
+        {
+            address: {
+                city: "Batumi",
+            },
+        },
+    ],
+};
 
-////// TASK 1 --- option B  async/await
+const getCity = (user) => {
+    const { banks: [, , { address: { city } }] } = user;
+    return city;
+};
 
-//შექმნა
-async function makeToys() {
-  function mySetTimeout(delay) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (Math.random() > 0.2) {
-          resolve ("Undefected"); //უდეფექტო (3 წამი)
-        } else {
-          reject ("Defected"); //დეფექტური --- კოდი გაჩერდა (3 წამი)
-        }
-      }, delay);
-    });
-  }
-  return await mySetTimeout(3000);
-}
+console.log (getCity(user)) // Borjomi
 
-// გაყიდვა
-async function sellToys(sellStatus) {
-    function mySetTimeout(delay) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if (sellStatus === "Undefected") {
-            if (Math.random() > 0.7) {
-              resolve("Toy has been sold"); //უდეფექტო --- გაიყიდა (+ 1  წამი = 4)
-            } else {
-              reject("Toy has not been sold"); //უდეფექტო --- არ გაიყიდა --- კოდი გაჩერდა (+ 1  წამი = 4)
-            }
-          }
-        }, delay);
-      });
-    }
-    return await mySetTimeout(1000)
-}
+//task - 3
+console.log("task 3");
 
-// მიტანა
-async function deliverToys(deliverStatus) {
-    function mySetTimeout(delay) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if (deliverStatus === "Toy has been sold") {
-            if (Math.random() > 0.5) {
-              resolve("Toy has been delivered"); //უდეფექტო --- გაიყიდა --- მივიდა მომხმარებელთან ---კოდი გაჩერდა (+ 2 წამი = 6)
-            } else {
-              reject("Toy has not been delivered"); //უდეფექტო --- გაიყიდა ---ვერ მივიდა მომხმარებელთან ---კოდი გაჩერდა (+ 2 წამი = 6)
-            }
-          }
-        }, delay);
-      });
-    }
-    return await mySetTimeout(2000)
-}
+const obj = {
+  firstName: "David",
+  lastName: "Glunchadze",
+  data: {
+    age: 35,
+    gender: "Male",
+  },
+  car: {
+    model: "volvo",
+    code: "XC60",
+  },
+  pets: ["cat", "dog", "parrot"],
+};
 
-const start = Date.now();
 
-async function toys() {
-  try {
-    const sellStatus = await makeToys()
-    const deliverStatus = await sellToys(sellStatus)
-    const result = await deliverToys(deliverStatus)
-    console.log(`${result} (TASK 2 - Option B)`);
-    //დროის გამოთვლა
-    const end = Date.now();
-    const totalTimeInSeconds = (end - start) / 1000;
-    console.log(`Total time: ${totalTimeInSeconds} seconds`)
-  } catch (error) {
-    console.log(`${error} (TASK 2 - Option B)`);
-    // დროის გამოთვლა
-    const end = Date.now();
-    const totalTimeInSeconds = (end - start) / 1000;
-    console.log(`Total time: ${totalTimeInSeconds} seconds`)
-  }
-}
 
-toys()
+const deepClone = (obj) => {
+  const clonedObj = {
+    ...obj,
+    data: {...obj.data},
+    car: {...obj.car},
+    pets: [...obj.pets],
+  };
+  return clonedObj;
+};
 
+const obj2 = deepClone(obj);
+
+obj.car.model = "Mercedes";
+
+
+console.log(obj.car.model); // Mercedes
+console.log(obj2.car.model) // volvo
