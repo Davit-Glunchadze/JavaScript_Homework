@@ -1,5 +1,4 @@
- 
- //შექმენი <button> და <div> ელემენტები და მიანიჭეთ საკუთარი უნიკალური id 
+//შექმენი <button> და <div> ელემენტები და მიანიჭეთ საკუთარი უნიკალური id 
  // ● <div> - ში ჩაწერე პატარა random ტექსტი 
  // ● ღილაკზე დაჭერის შემთხვევაში დამალე <div> ელემენტი 
  // ● შექმენი შემდეგი სტრუქტურა JS -ის გამოყენებით და დაამატე DOM-ში: <div id=”card”> <h2>Gandalf</h2> <a href=”#”>Go to profile</a> </div> 
@@ -43,7 +42,6 @@ removerBtn.addEventListener("click", () => {
 });
 
 
-
 //
 //task 2
 //
@@ -63,7 +61,6 @@ div2.insertAdjacentHTML("afterbegin", "Task 2");
 //classes, ID
 div2.setAttribute("id", "card");
 
-
 //
 // task 3
 //
@@ -71,7 +68,6 @@ let answers = [];
 let questions = [];
 let correctAnswer = [];
 let score = 0; 
-
 
 // მონაცემების მიღება სხვა ფაილიდან
 fetch("questions.json")
