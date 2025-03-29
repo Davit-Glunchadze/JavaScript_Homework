@@ -1,101 +1,172 @@
 
-//
-// მოცემულია მასივი [{name: 'Temo', age: 25}, {name: 'Lasha', age: 21}, {name: 'Ana', age: 28}]
-// ● დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს user - ების მასივს და დააბრუნებს ყველაზე პატარა ასაკის მქონე ადამიანის სახელს
-// ● დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს user ობიექტს და დააბრუნებს იგივე მნიშვნელობების მქონე ახალ (განსხვავებულ) ობიექტს
-// ● დაწერე პროგრამა, სადაც ორი a და b მომხმარებლები აგორებენ კამათელს მანამ, სანამ არ გაგორდება, რომელიც უფრო ნაკლებ ცდაში გააგორებს სამიანს ის არის გამარჯვებული
 
-///
-// Task 1------------------------------------
-///
-console.log("Task 1--------------------------------")
+ //setTimeout ფუნქცია იყენებს callback-ს, დაწერეთ მისი promise-ზე დადაფუძნებული ალტერნატივა ● (მაგ: mySetTimeout(delay).then(...) 
+ // ● გამოიყენე პირველ დავალებაში შექმნილი ფუნქცია, რათა განავრცო ჩვენს მიერ დაწერილი “Toy Shop” შემდეგი პირობის იმპლემენტაციით: 
+ // ➔ სათამაშოს დამზადებას სჭირდება დაახლოებით 3 წამი. (დროის მითითება შესაძლებელი უნდა იყოს დინამიურად) 
+ // ➔ დავამატოთ კიდევ ერთი ნაბიჯი, რომელსაც დავარქმევთ პირობითად, “deliverToys”, რომლის დაყოვნებაც 2 წამია (გადაეცემა დინამიურად) 
+ // ➔ სათამაშოს გაყიდვას სჭირდება 1 წამი (დინამიურად) ● ყოველი მომდევნო ნაბიჯი უნდა ელოდებოდეს წინა ნაბიჯის რეზულტატს და შესაბამისად წყვეტდეს მოხდება თუ არა მისი შესრულება
+ // ● გამოიყენე .then().catch() და async/await ● სინტაქსები. (2 ვარიანტი)
 
-const user = [
-    { name: "temo", age: 25 },
-    { name: "Lasha", age: 21 },
-    { name: "Ana", age: 28 },
-]
+/// TASK 1
 
-function getYoungerAge(){
-    const getAges = user.map(person => person.age)
-    const youngest = Math.min(...getAges)
-    const youngestPerson = user.find(person => person.age === youngest)
-    console.log(youngestPerson)
-}
- //
- // დაწერე ფუნქცია, რომელიც მიიღებს სამ პარამეტრს (string, valueToReplace, valueToReplaceWith), ჩაანაცვლებს "valueToReplace"-ს "valueToReplaceWith" მნიშვნელობით და დააბრუნებს ახალ stringს 
- // ● არ გამოიყენო string.replace() ფუნქცია 
- // ● დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს string ტიპის მნიშვნელობას (წინადადებას), მასში ყოველ სიტყვას გადაწერს დიდი ასოთი და დააბრუნებს ახალ წინადადებას
-
-//Task 1
-
-console.log("Task 1")
-
-
-const replaceText = (string, valueToReplace, valueToReplaceWith) => {
-
-  return string.split(valueToReplace).join( valueToReplaceWith)
-
-
+function mySetTimeout(delay) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("hello There");
+    }, delay);
+  });
 }
 
-console.log(replaceText ("David Glunchadze", "Glunchadze", "Asabashvili")) // David Asabashvili
+const started = Date.now();
 
+mySetTimeout(2000)
+  .then((res) => { console.log(`${res} (TASK 1)`) // დრო 2 წამი
+    //დროის გამოთვლა
+  const end = Date.now()
+  const totalTime = (end - started)/1000
+  console.log(`Total time: ${totalTime} seconds`)
+});
 
+/// TASK 2 --- option A  then/catch
 
-//Task 2
-
-console.log("Task 2")
-
-const toUpperCase = (poem) =>{
-    const upperPoem = []
-
-    // for (const poemText of poem){
-    //     const splitText = poemText.split(' ');
-    //     const upperSplitText = []
-
-    //     for(const w of splitText){
-    //         const UpperPoemText = w[0].toUpperCase() + w.slice(1)
-    //         upperSplitText.push(UpperPoemText)
-    //     }
-
-    //     upperPoem.push(upperSplitText)
-    // }
-    // return upperPoem
-
-    return poem.map((poemText) => poemText.split(' ')
-            .map((w) => w[0].toUpperCase() + w.slice(1))
-            .join(" ")
-    )
+//შექმნა
+function makeToys(makeTime) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (Math.random() > 0.2) {
+        resolve("Undefected"); //უდეფექტო (3 წამი)
+      } else {
+        reject("Defected"); //დეფექტური --- კოდი გაჩერდა (3 წამი)
+      }
+    }, makeTime);
+  });
 }
 
-console.log(toUpperCase(["william shakespeare sonnet 66 - tired with all these for restful death i cry, as to behold desert a beggar born, and needy nothing trimmed in jollity, and purest faith unhappily forsworn, and gilded honour shamefully misplaced, and maiden virtue rudely strumpeted, and right perfection wrongfully disgraced, and strength by limping sway disabled, and art made tongue-tied by authority, and folly doctor-like controlling skill, and simple truth miscalled simplicity, and captive good attending captain ill:, tired with all these from these would i I be gone, Save that to die I leave my love alone."]))
+// გაყიდვა
+function sellToys(sellStatus, sellTime) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (sellStatus === "Undefected") {
+        if (Math.random() > 0.7) {
+          resolve("Toy has been sold"); //უდეფექტო --- გაიყიდა (+ 1  წამი = 4)
+        } else {
+          reject("Toy has not been sold"); //უდეფექტო --- არ გაიყიდა --- კოდი გაჩერდა (+ 1  წამი = 4)
+        }
+      }
+    }, sellTime);
+  });
+}
+//მიტანა
+function deliverToys(deliverStatus, deliverTime) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (deliverStatus === "Toy has been sold") {
+        if (Math.random() > 0.5) {
+          resolve("Toy has been delivered"); //უდეფექტო --- გაიყიდა --- მივიდა მომხმარებელთან ---კოდი გაჩერდა (+ 2 წამი = 6)
+        } else {
+          reject("Toy has not been delivered"); //უდეფექტო --- გაიყიდა ---ვერ მივიდა მომხმარებელთან ---კოდი გაჩერდა (+ 2 წამი = 6)
+        }
+      }
+    }, deliverTime);
+  });
+}
 
+const startTime = Date.now();
 
-//Task 3
+makeToys(3000)
+  .then((sellStatus) => sellToys(sellStatus, 1000))
+  .then((deliverStatus) => deliverToys(deliverStatus, 2000))
+  .then((res) => {
+    console.log(`${res} (TASK 2 - Option A)`);
+    // დროის გამოთვლა
+    const endTime = Date.now();
+    const totalTimeInSeconds = (endTime - startTime) / 1000;
+    console.log(`Total time: ${totalTimeInSeconds} seconds`);
+  })
+  .catch((error) => {
+    console.log(`${error} (TASK 2 - Option A)`);
+    //დროის გამოთვლა
+    const endTime = Date.now();
+    const totalTimeInSeconds = (endTime - startTime) / 1000;
+    console.log(`Total time: ${totalTimeInSeconds} seconds`);
+  });
 
-console.log("Task 3")
+////// TASK 1 --- option B  async/await
 
-const users = [{ name: "James", age: 40 },{ name: "Lasha", age: 30 }, { name: "Giorgi", age: 20 }, { name: "Dato", age: 25 } ]
+//შექმნა
+async function makeToys() {
+  function mySetTimeout(delay) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (Math.random() > 0.2) {
+          resolve ("Undefected"); //უდეფექტო (3 წამი)
+        } else {
+          reject ("Defected"); //დეფექტური --- კოდი გაჩერდა (3 წამი)
+        }
+      }, delay);
+    });
+  }
+  return await mySetTimeout(3000);
+}
 
-// const sortedUsers = users.sort((a,b,) => {
-//     if (a.age < b.age ){
-//         return -1
-//     }
-//     if (a.age > b.age){
-//         return 1
-//     }
-//     return 0
-// })
+// გაყიდვა
+async function sellToys(sellStatus) {
+    function mySetTimeout(delay) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (sellStatus === "Undefected") {
+            if (Math.random() > 0.7) {
+              resolve("Toy has been sold"); //უდეფექტო --- გაიყიდა (+ 1  წამი = 4)
+            } else {
+              reject("Toy has not been sold"); //უდეფექტო --- არ გაიყიდა --- კოდი გაჩერდა (+ 1  წამი = 4)
+            }
+          }
+        }, delay);
+      });
+    }
+    return await mySetTimeout(1000)
+}
 
-const sortedUsers = users.sort((a,b) => a.age - b.age)
+// მიტანა
+async function deliverToys(deliverStatus) {
+    function mySetTimeout(delay) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (deliverStatus === "Toy has been sold") {
+            if (Math.random() > 0.5) {
+              resolve("Toy has been delivered"); //უდეფექტო --- გაიყიდა --- მივიდა მომხმარებელთან ---კოდი გაჩერდა (+ 2 წამი = 6)
+            } else {
+              reject("Toy has not been delivered"); //უდეფექტო --- გაიყიდა ---ვერ მივიდა მომხმარებელთან ---კოდი გაჩერდა (+ 2 წამი = 6)
+            }
+          }
+        }, delay);
+      });
+    }
+    return await mySetTimeout(2000)
+}
 
-console.log(sortedUsers)
- 
-// name: 'Giorgi', age: 20
-// name: 'Dato', age: 25
-// name: 'Lasha', age: 30
-// name: 'James', age: 40
+const start = Date.now();
+
+async function toys() {
+  try {
+    const sellStatus = await makeToys()
+    const deliverStatus = await sellToys(sellStatus)
+    const result = await deliverToys(deliverStatus)
+    console.log(`${result} (TASK 2 - Option B)`);
+    //დროის გამოთვლა
+    const end = Date.now();
+    const totalTimeInSeconds = (end - start) / 1000;
+    console.log(`Total time: ${totalTimeInSeconds} seconds`)
+  } catch (error) {
+    console.log(`${error} (TASK 2 - Option B)`);
+    // დროის გამოთვლა
+    const end = Date.now();
+    const totalTimeInSeconds = (end - start) / 1000;
+    console.log(`Total time: ${totalTimeInSeconds} seconds`)
+  }
+}
+
+toys()
 
 
     dicePlayers()
