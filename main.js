@@ -77,5 +77,3 @@ console.log("Task 3--------------------------------")
     }
 
     dicePlayers()
-
-
