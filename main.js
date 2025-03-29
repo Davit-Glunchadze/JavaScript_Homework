@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+
  //setTimeout ფუნქცია იყენებს callback-ს, დაწერეთ მისი promise-ზე დადაფუძნებული ალტერნატივა ● (მაგ: mySetTimeout(delay).then(...) 
  // ● გამოიყენე პირველ დავალებაში შექმნილი ფუნქცია, რათა განავრცო ჩვენს მიერ დაწერილი “Toy Shop” შემდეგი პირობის იმპლემენტაციით: 
  // ➔ სათამაშოს დამზადებას სჭირდება დაახლოებით 3 წამი. (დროის მითითება შესაძლებელი უნდა იყოს დინამიურად) 
  // ➔ დავამატოთ კიდევ ერთი ნაბიჯი, რომელსაც დავარქმევთ პირობითად, “deliverToys”, რომლის დაყოვნებაც 2 წამია (გადაეცემა დინამიურად)
 
 /// TASK 1
-=======
+
  //
  // დაწერე ფუნქცია, რომელიც მიიღებს სამ პარამეტრს (string, valueToReplace, valueToReplaceWith), ჩაანაცვლებს "valueToReplace"-ს "valueToReplaceWith" მნიშვნელობით და დააბრუნებს ახალ stringს 
  // ● არ გამოიყენო string.replace() ფუნქცია 
@@ -18,7 +18,7 @@ console.log("Task 1")
 const replaceText = (string, valueToReplace, valueToReplaceWith) => {
 
   return string.split(valueToReplace).join( valueToReplaceWith)
->>>>>>> 08d436f92ff0af926965b918042b0b57dac46b9a
+
 
 }
 
@@ -79,4 +79,3 @@ console.log(sortedUsers)
 // name: 'Dato', age: 25
 // name: 'Lasha', age: 30
 // name: 'James', age: 40
-
