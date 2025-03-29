@@ -111,4 +111,3 @@ mathButton.addEventListener("click", () => {
   answer.innerHTML = Math.round(avg);
  console.log(avg)
 });
-1
