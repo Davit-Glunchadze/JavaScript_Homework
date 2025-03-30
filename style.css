@@ -63,64 +63,19 @@ body {
   margin: 0 auto;
 }
 
-.game h1 {
-  text-align: center;
-  color: blanchedalmond;
-  font-size: 40px;
-  margin: 20px;
-}
-
-.question {
-  background-color: rgb(5, 143, 143);
-  padding: 20px 50px 30px;
-  border: 2px solid;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.game h3 {
-  margin: 20px;
-  color: rgb(3, 20, 20);
-  font-size: 20px;
-}
-
-.label {
-  display: flex;
-  border: 1px solid;
-  padding: 10px;
-  border-radius: 10px;
-  background: aqua;
+.post-section {
+  border: solid 2px;
+  padding: 30px;
   margin: 10px;
-  font-size: 20px;
-  color: rgb(15, 3, 3);
-  letter-spacing: 1px;
-  gap: 10px;
 }
 
-.label:hover {
-  cursor: pointer;
-  transform: scale(1.1);
-  transition: ease 0.4s;
-  background-color: rgb(166, 107, 221);
-}
 
-.score {
-  display: flex;
 
-  width: 150px;
-  height: 50px;
-  background-color: rgb(89, 197, 197);
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  margin: 10px auto;
-  font-size: 20px;
-  color: rgb(29, 4, 139);
-  border: 2px solid black;
-}
 
-.bottom-line {
-  display: flex;
-}
+
+
+
+
+
 
 
