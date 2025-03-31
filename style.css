@@ -63,10 +63,11 @@ body {
   margin: 0 auto;
 }
 
-.post-section {
+.post-div {
   border: solid 2px;
   padding: 30px;
   margin: 10px;
+  background-color: aquamarine;
 }
 
 

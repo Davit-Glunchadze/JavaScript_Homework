@@ -43,24 +43,29 @@ async function obj() {
     const bigData = await fetch("https://jsonplaceholder.typicode.com/posts");
     const data = await bigData.json();
     const deepData = deepCopy(data);
+
+    //Deepcopy შემოწმება
+    deepData[0].id = 100000000
+    console.log(data);
     console.log(deepData);
+    
 
     // დივის შექმნა
     const div = document.getElementById("gamequiz");
-    
+
     // თითო პოსტის ამოღება (ობიექტის)
     deepData.forEach((user, index) => {
       // თითო პოსტისათის თითო სექცია
-      const section = document.createElement("section");
-      section.classList.add("post-section");
-      
+      const postDiv = document.createElement("div");
+      postDiv.classList.add("post-div");
+
       const h2 = document.createElement("h2");
-      h2.textContent = `Post ${index + 1}`; 
-      section.appendChild(h2);
-    
+      h2.textContent = `Post ${index + 1}`;
+      postDiv.appendChild(h2);
+
       const ul = document.createElement("ul");
-      section.appendChild(ul);
-      
+      postDiv.appendChild(ul);
+
       // თითო პოსტისათვის მონაცემები
       Object.entries(user).forEach(([key, value]) => {
         const li = document.createElement("li");
@@ -68,10 +73,10 @@ async function obj() {
         ul.appendChild(li);
       });
       // დივზე მიბმა
-      div.appendChild(section);
+      div.appendChild(postDiv);
     });
   } catch (error) {
-    console.log(error);
+    console.log("Input must be an object or an array");
   }
 }
 
