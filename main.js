@@ -1,10 +1,15 @@
-//დაწერე ფუნქცია expo, რომელიც იქნება რეკურსიული ფუნქცია და მიიღებს არგუმენტად:
-// ● ა) ციფრს ბ) ხარისხს და გ) callback - ს და დააბრუნებს მიღებული ციფრის ხარისხს მაგალითად: 5 ხარისხად 3 - არის 125 (5 * 5 *5)
-// ● fetch ფუნქციის გამოყენებით წამოიღე მონაცემები მოცემული მისამართიდან (https://jsonplaceholder.typicode.com/posts)და გამოიტანე DOM-ში პოსტის სახით
-// ● დაწერე ასინქრონული ფუნქცია, რომელიც არგუმენტად იღებს ობიექტს და აკეთებს deep copy-ს
-// ● ფუნქციამ უნდა გამოიძახოს reject თუ არგუმენტი არ არის ობიექტი. თუ ყველაფერი კარგად არის, გამოიძახოს resolve კოპირებული ობიექტით
+//შექმენი <button> და <div> ელემენტები და მიანიჭეთ საკუთარი უნიკალური id 
+ // ● <div> - ში ჩაწერე პატარა random ტექსტი 
+ // ● ღილაკზე დაჭერის შემთხვევაში დამალე <div> ელემენტი 
+ // ● შექმენი შემდეგი სტრუქტურა JS -ის გამოყენებით და დაამატე DOM-ში: <div id=”card”> <h2>Gandalf</h2> <a href=”#”>Go to profile</a> </div> 
+ // ● შექმენი quiz თამაში 
+ // ● დაწერე რამდენიმე მოკლე შეკითხვა თავისი სავარაუდო პასუხებით სწორ პასუხზე დაჭერის შემთხვევაში გაამწვანე პასუხი 
+ // ● არასწორი პასუხის შემთხვევაში გააწითლე 
+ // ● ბონუს დავალება: გამოიტანე ეკრანზე ქულების რაოდენობა 
+ // ➔ სწორი პასუხის შემთხვევაში დაამატე 1 ქულა 
+ // ➔ არასწორის შემთხვევაში უცვლელი რჩება
 
-//
+ 
 // task 1
 //
 const div1 = document.createElement("div");
@@ -40,7 +45,6 @@ removerBtn.addEventListener("click", () => {
 //
 //task 2
 //
-
 const div2 = document.createElement("div");
 const testH2 = document.createElement("h2");
 testH2.textContent = "Gandalf";
@@ -84,32 +88,48 @@ fetch("questions.json")
       gameDiv.appendChild(qiuzDiv);
     }
 
-    // თითო პოსტის ამოღება (ობიექტის)
-    deepData.forEach((user, index) => {
-      // თითო პოსტისათის თითო სექცია
-      const postDiv = document.createElement("div");
-      postDiv.classList.add("post-div");
+    // შეკითხვის div შექმნა
+    questions.forEach((question, index) => {
+      const questionDiv = document.createElement("div");
+      questionDiv.classList.add("question");
 
-      const h2 = document.createElement("h2");
-      h2.textContent = `Post ${index + 1}`;
-      postDiv.appendChild(h2);
+      // კითხვის ველის შექმნა-ჩასმა
+      const questionLabel = document.createElement("h3");
+      questionLabel.textContent = question;
+      questionDiv.appendChild(questionLabel);
 
-      const ul = document.createElement("ul");
-      postDiv.appendChild(ul);
+      // პასუხების ველის შექმნა და დამატება
+      answers[index].forEach((answer) => {
+        const label = document.createElement("label");
+        label.classList.add("label");
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = `group${index}`; // რომ თითოეულ კითხვას თავისი ჯგუფი ჰქონდეს
+        input.value = answer; // მნიშვნელობა = პასუხი
 
-      // თითო პოსტისათვის მონაცემები
-      Object.entries(user).forEach(([key, value]) => {
-        const li = document.createElement("li");
-        li.textContent = `${key}: ${value}`;
-        ul.appendChild(li);
+        label.appendChild(input);
+        label.append(answer);
+        questionDiv.appendChild(label);
+
+        // click ივენთი
+        input.addEventListener("click", () => {
+          // სწორი პასუხი
+          if (input.value === correctAnswer[index]) {
+            label.style.background = "green"; // მწვანე ფონი სწორი პასუხისთვის
+            label.style.color = "aqua";
+            score++; // ამატებს ქულას
+          } else {
+            label.style.background = "red"; // წითელი ფონი არასწორი პასუხისთვის
+            label.style.color = "aqua";
+          }
+          
+          // ქულების გამოტანა
+          const scoreDiv = document.getElementById("your-score");
+          scoreDiv.textContent = `Your Score: ${score}`;
+        });
       });
-      // დივზე მიბმა
-      div.appendChild(postDiv);
+
+      // დამატება მთავარ div-ში
+      qiuzDiv.appendChild(questionDiv);
     });
-  } catch (error) {
-    console.log("Input must be an object or an array");
-  }
-}
-
-obj();
-
+  }); 
