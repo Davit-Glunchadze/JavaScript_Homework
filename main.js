@@ -45,6 +45,7 @@ removerBtn.addEventListener("click", () => {
 //
 //task 2
 //
+
 const div2 = document.createElement("div");
 const testH2 = document.createElement("h2");
 testH2.textContent = "Gandalf";
